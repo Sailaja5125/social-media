@@ -6,10 +6,16 @@ const app = express();
 app.get('/', (req, res) => {
     res.send('Hello World!');
 });
-connect().then(()=>{
-    console.log("Connected to the database successfully");
-})
-
+const startServer = async ()=>{
+    try {
+        await connect();
+        console.log("Database connected successfully ✅🎉");
+    } catch (error) {
+        console.error("Error connecting to the database:", error);
+        process.exit(1);        
+    }
+}
+startServer();
 app.listen(ENV.PORT , ()=>{
     console.log("Server is running on port", ENV.PORT);
 })
