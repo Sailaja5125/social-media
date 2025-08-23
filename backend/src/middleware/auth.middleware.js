@@ -1,17 +1,18 @@
-export const protectRoute = async(req , res , next)=>{
-    try{
-        if(!req.auth().isAuthenticated()){
-            return res.status(401).json({
+export const protectRoute =async(req , res , next)=>{
+        try{
+            if(!req.auth().isAuthenticated()){
+                return res.status(401).json({
+                    success: false,
+                    message: "Unauthorized access, please login first"
+                });
+            }
+            next();
+    
+        }catch(error){
+            res.status(500).json({
                 success: false,
-                message: "Unauthorized access, please login first"
+                message: "Internal server error",
+                error: error.message
             });
         }
-
-    }catch(error){
-        res.status(500).json({
-            success: false,
-            message: "Internal server error",
-            error: error.message
-        });
     }
-}

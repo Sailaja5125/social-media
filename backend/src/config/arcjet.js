@@ -1,7 +1,7 @@
 import arcjet , { tokenBucket , shield , detectBot } from '@arcjet/node'
 import { ENV } from "./env.js"
 
-export const aj  =arcjet({
+export const aj = arcjet({
     key:ENV.ARCJET_KEY,
     characteristics:["ip.src"],
     rules:[
@@ -11,10 +11,10 @@ export const aj  =arcjet({
         // bot detection
         detectBot({
             mode: "LIVE",
-            allow:{
-                "CATEGORY":"SEARCH_ENGINE",
-                // allow legitimate search engine bots
-            }
+           allow: [
+        "CATEGORY: SEARCH_ENGINE"
+      ]
+
         }),
 
         // rate limiting with TokenBucket Algorithm 

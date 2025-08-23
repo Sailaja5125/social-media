@@ -6,12 +6,14 @@ import { clerkMiddleware } from '@clerk/express';
 import userRoutes from './routes/user.route.js';
 import postRoutes from './routes/post.route.js';
 import commentRoutes from './routes/comments.route.js'
+import notificationRoutes from './routes/notification.route.js'
 import { arcjetMiddleware } from './middleware/arcjet.middleware.js';
 const app = express();
 app.use(cors()) 
 app.use(express.json()); // access JSON data in request body
+app.use(arcjetMiddleware); // arcjet middleware for security itself is an object 
 app.use(clerkMiddleware()); // Clerk middleware for authentication
-app.use(arcjetMiddleware()); // arcjet middleware for security
+
 app.get('/', (req, res) => {
     res.send('Hello World!');
 });
@@ -25,12 +27,17 @@ const startServer = async ()=>{
     try {
         await connect();
         console.log("Database connected successfully ✅🎉");
+        if(ENV.NODE_ENV !="production"){
+            app.listen(ENV.PORT , ()=>{
+                console.log("Server is running on port http://localhost:"+ENV.PORT);
+            })
+        }
     } catch (error) {
         console.error("Error connecting to the database:", error);
         process.exit(1);        
     }
 }
 startServer();
-app.listen(ENV.PORT , ()=>{
-    console.log("Server is running on port http://localhost:"+ENV.PORT);
-})
+
+// export for vercel
+export default app;
