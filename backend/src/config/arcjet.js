@@ -10,12 +10,19 @@ export const aj  =arcjet({
 
         // bot detection
         detectBot({
-            node: "LIVE",
+            mode: "LIVE",
             allow:{
                 "CATEGORY":"SEARCH_ENGINE",
                 // allow legitimate search engine bots
             }
+        }),
 
+        // rate limiting with TokenBucket Algorithm 
+        tokenBucket({
+            mode:"LIVE",
+            refillRate:10,
+            interval:10,
+            capacity:15
         })
     ]
 })
