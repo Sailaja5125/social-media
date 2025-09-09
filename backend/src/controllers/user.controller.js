@@ -30,9 +30,7 @@ export const updateProfile = asyncHandler(async(req, res) => {
 
 export const syncUser = asyncHandler(async(req, res) => {
  const { userId } = getAuth(req);
- if (!userId) {
-    return res.status(401).json({ success: false, message: "Unauthorized: No user ID found" });
-  }
+ 
 
  const existingUser = await User.findOne({ clerkId: userId });
  
