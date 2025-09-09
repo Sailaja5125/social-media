@@ -37,12 +37,10 @@ export const syncUser = asyncHandler(async(req, res) => {
  }
 
  const clerkUser = await clerkClient.users.getUser(userId);
- if(clerkUser){
-    return res.status(200).json({ success: true, user: clerkUser , message: "User data fetched" });
- }
+ 
  const userData = {
     clerkId: userId,
-    email: clerkUser.emailAddresses[0]?.emailAddress,
+    email: clerkUser.emailAddresses[0].emailAddress,
     firstname: clerkUser.firstName||"",
     lastname: clerkUser.lastName||"",
     username:clerkUser.emailAddresses[0]?.emailAddress.split('@')[0],
