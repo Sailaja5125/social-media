@@ -10,7 +10,7 @@ export const protectRoute = async (req, res, next) => {
         message: "Unauthorized access, please login first",
       });
     }
-
+  
     next();
   } catch (error) {
     res.status(500).json({

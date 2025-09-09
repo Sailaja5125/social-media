@@ -20,7 +20,7 @@ app.get('/', (req, res) => {
 
 // start with user routes 
 app.use('/api/users',userRoutes);
-app.use('/api/auth',postRoutes);
+app.use('/api/post',postRoutes);
 app.use('/api/comment',commentRoutes);
 app.use('/api/notification',notificationRoutes);
 const startServer = async ()=>{
