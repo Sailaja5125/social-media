@@ -1,7 +1,7 @@
 import axios , { AxiosInstance } from "axios";
 import { useAuth } from "@clerk/clerk-expo";
 
-const API_BASE = "https://social-media-eslk2woy2-sailajas-projects-c6560025.vercel.app/api"
+const API_BASE = "https://social-media-nine-kohl.vercel.app/api"
 
 export const createApiClient = (getToken:()=>Promise<string|null>):AxiosInstance =>{
     const api = axios.create({
