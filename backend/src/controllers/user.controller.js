@@ -41,10 +41,10 @@ export const syncUser = asyncHandler(async(req, res) => {
  const userData = {
     clerkId: userId,
     email: clerkUser.emailAddresses[0].emailAddress,
-    firstname: clerkUser.firstName||"",
-    lastname: clerkUser.lastName||"",
+    firstname: clerkUser.firstName||"John",
+    lastname: clerkUser.lastName||"Doe",
     username:clerkUser.emailAddresses[0]?.emailAddress.split('@')[0],
-    profilePicture: clerkUser.imageUrl || "",
+    profilePicture: clerkUser.imageUrl||"",
  }
 
  const user = await User.create(userData);
