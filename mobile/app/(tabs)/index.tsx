@@ -2,7 +2,9 @@ import { View, Text } from 'react-native'
 import React from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import SignoutButton from '@/components/SignoutButton'
-const Index = () => {
+import { useUserSync } from '@/hooks/useUserSync'
+const HomeScreen = () => {
+  useUserSync()
   return (
     <SafeAreaView>
       <Text>HomeScreen</Text>
@@ -11,4 +13,4 @@ const Index = () => {
   )
 }
 
-export default Index
+export default HomeScreen

@@ -1,89 +1,67 @@
-import { View, Text } from "react-native";
 import React from "react";
-import { Tabs } from "expo-router";
+import { Tabs, Redirect } from "expo-router";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import Feather from '@expo/vector-icons/Feather';
+import Feather from "@expo/vector-icons/Feather";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { SignedIn } from "@clerk/clerk-expo";
-import { Redirect } from "expo-router";
-const TabsLayout = () => {
-    const insets = useSafeAreaInsets();
-    if(!SignedIn){
-        return <Redirect href="./(auth)" />
-    }
+import { useAuth } from "@clerk/clerk-expo";
+
+export default function TabsLayout() {
+  const insets = useSafeAreaInsets();
+  
+  const { isSignedIn } = useAuth();
+
+  if (!isSignedIn){ return <Redirect href={"/(auth)/sign-up"} />}
+
   return (
-    <Tabs screenOptions={
-        {
-            tabBarInactiveTintColor:'#273236',
-            tabBarStyle:{
-                backgroundColor:'#fff',
-                borderTopWidth:1,
-                borderTopColor:'#E1E8ED',
-                height:60 +  insets.bottom,
-                paddingTop:8,
-            }
-        }
-    }>
+    <Tabs
+      screenOptions={{
+        tabBarInactiveTintColor: "#273236",
+        tabBarActiveTintColor: "#5e35c3",
+        tabBarStyle: {
+          backgroundColor: "#fff",
+          borderTopWidth: 1,
+          borderTopColor: "#E1E8ED",
+          height: 60 + insets.bottom,
+          paddingTop: 8,
+        },
+        headerShown: false,
+      }}
+    >
       <Tabs.Screen
         name="index"
         options={{
-          tabBarIcon: ({ color, size }) => (
-            <Feather name="home" size={24} color={color} />
-          ),
-            headerShown: false,
-            tabBarActiveTintColor: '#5e35c3',
-            title: '',
-            
-        }
-
-    }
+          title: "",
+          tabBarIcon: ({ color }) => <Feather name="home" size={24} color={color} />,
+        }}
       />
       <Tabs.Screen
         name="search"
-        options={{  
-            tabBarIcon: ({ color, size }) => (
-            <Ionicons name="search" color={color} size={size} />
-          ),
-          headerShown: false,
-          tabBarActiveTintColor: '#5e35c3',
-          title: '',
+        options={{
+          title: "",
+          tabBarIcon: ({ color, size }) => <Ionicons name="search" size={size} color={color} />,
         }}
       />
       <Tabs.Screen
         name="messages"
-        options={{ 
-             tabBarIcon: ({ color, size }) => (
-            <Feather name="message-circle" size={24} color={color} />
-          ),
-          headerShown: false,
-          tabBarActiveTintColor: '#5e35c3',
-          title: '',
+        options={{
+          title: "",
+          tabBarIcon: ({ color }) => <Feather name="message-circle" size={24} color={color} />,
         }}
       />
       <Tabs.Screen
         name="notification"
-        options={{ 
-             tabBarIcon: ({ color, size }) => (
-            <Ionicons name="notifications-outline" size={24} color={color} />
-          ),
-          headerShown: false,
-          title: '',
-          tabBarActiveTintColor: '#5e35c3',
-         }}
+        options={{
+          title: "",
+          tabBarIcon: ({ color }) => <Ionicons name="notifications-outline" size={24} color={color} />,
+        }}
       />
       <Tabs.Screen
         name="profile"
-        options={{ 
-             tabBarIcon: ({ color, size }) => (
-            <Feather name="users" size={24} color={color} />
-          ),
-          headerShown: false,
-          tabBarActiveTintColor: '#5e35c3',
-            title: '',
-         }}
+        options={{
+          title: "",
+          tabBarIcon: ({ color }) => <Feather name="users" size={24} color={color} />,
+        }}
       />
     </Tabs>
   );
-};
-
-export default TabsLayout;
+}
