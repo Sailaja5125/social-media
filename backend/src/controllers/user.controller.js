@@ -41,8 +41,8 @@ export const syncUser = asyncHandler(async(req, res) => {
  const userData = {
     clerkId: userId,
     email: clerkUser.emailAddresses[0].emailAddress,
-    firstname: clerkUser.firstName||"John",
-    lastname: clerkUser.lastName||"Doe",
+    firstName: clerkUser.firstName||"John",
+    lastName: clerkUser.lastName||"Doe",
     username:clerkUser.emailAddresses[0]?.emailAddress.split('@')[0],
     profilePicture: clerkUser.imageUrl||"",
  }
