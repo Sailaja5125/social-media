@@ -12,7 +12,7 @@ const app = express();
 app.use(cors()) 
 app.use(express.json()); // access JSON data in request body
 app.use(clerkMiddleware()); // Clerk middleware for authentication
-app.use(arcjetMiddleware); // arcjet middleware for security itself is an object 
+// app.use(arcjetMiddleware); // arcjet middleware for security itself is an object 
 
 app.get('/', (req, res) => {
     res.send('Hello World!');
