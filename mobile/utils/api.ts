@@ -37,9 +37,9 @@ export const postApi= {
     getPosts : (api:AxiosInstance)=>api.get("post"),
     getUserPost:(api:AxiosInstance , username:string)=>api.post(`/post/user/${username}`),
     likPosts :(api:AxiosInstance , postId:string)=> api.post(`/post/${postId}/like`),
-    deletePost:(api:AxiosInstance , postId:string)=> api.post(`/post/${postId}`),
+    deletePost:(api:AxiosInstance , postId:string)=> api.delete(`/post/${postId}`),
 }
 
 export const commentApi={
-    createComment: (api:AxiosInstance ,postId:string , content:string)=>api.post(`/comment/post/${postId}`,{content})
+    createComment: (api:AxiosInstance ,postId:string , content:string)=>api.post(`/comment/${postId}`,{content})
 }

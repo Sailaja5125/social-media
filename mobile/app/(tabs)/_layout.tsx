@@ -10,7 +10,8 @@ export default function TabsLayout() {
   
   const { isSignedIn } = useAuth();
 
-  if (!isSignedIn){ return <Redirect href={"/(auth)/sign-up"} />}
+  if (!isSignedIn){ return <Redirect href={"/(auth)/sign-up"} />
+}
 
   return (
     <Tabs

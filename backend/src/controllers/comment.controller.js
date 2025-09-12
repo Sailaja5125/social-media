@@ -23,7 +23,7 @@ export const createComment = asyncHandler(async (req, res) => {
   const user = await User.findOne({ clerkId: userId });
   const post = await Post.findById(postId);
 
-  if(comment.trim()==="" || !content){
+  if(content.trim()==="" || !content){
     return res.status(404).json({ error: "Bhai atleast write a text comment daa !!" });
   }
   if (!user || !post) {
