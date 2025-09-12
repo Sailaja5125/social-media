@@ -33,7 +33,7 @@ export const getPost = asyncHandler(async(req, res) => {
     path:'comments',
     populate:{
         path:"user",
-        select:"username firstName lastName profilePicture"
+        select:"username firstName lastName profileImage"
     }
  })
  if(!post){
@@ -53,11 +53,11 @@ export const getUserPosts = asyncHandler(async(req , res)=>{
 
     const post = await Post.findOne({
         user:user._id
-    }).sort({created:-1}).populate("user" , "username firstName lastName profilePicture").populate({
+    }).sort({created:-1}).populate("user" , "username firstName lastName profileImage").populate({
         path:"comments",
         populate:{
             path:"user",
-            select:"username firstName lastName profilePicture",
+            select:"username firstName lastName profileImage",
         }
     })
 
@@ -117,9 +117,6 @@ export const createPost = asyncHandler(async (req, res) => {
   });
 
   
-
-  
-
   return res.status(201).json({
     success: true,
     message: "Post created successfully",

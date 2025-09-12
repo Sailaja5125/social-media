@@ -11,7 +11,7 @@ export const createApiClient = (getToken:()=>Promise<string|null>):AxiosInstance
     api.interceptors.request.use(
         async (config)=>{
             const token = await getToken();
-            console.log(token)
+            // console.log(token)
             if(token){
                 config.headers.Authorization = `Bearer ${token}`;
             }
@@ -28,6 +28,18 @@ export const useApiClient = ():AxiosInstance=>{
 
 export const userApi = {
    syncUser: (api:AxiosInstance) => api.post('/users/sync'),
-   getCurrentUser :(api:AxiosInstance) => api.post('/users/me'),
+   getCurrentUser :(api:AxiosInstance) => api.get('/users/me'),
    updateProfile: (api:AxiosInstance , data:any) => api.post('/users/profile',data),
+}
+
+export const postApi= {
+    createPost :(api :AxiosInstance , data:{content:string ,image?:string})=> api.post("post/create"),
+    getPosts : (api:AxiosInstance)=>api.get("post"),
+    getUserPost:(api:AxiosInstance , username:string)=>api.post(`/post/user/${username}`),
+    likPosts :(api:AxiosInstance , postId:string)=> api.post(`/post/${postId}/like`),
+    deletePost:(api:AxiosInstance , postId:string)=> api.post(`/post/${postId}`),
+}
+
+export const commentApi={
+    createComment: (api:AxiosInstance ,postId:string , content:string)=>api.post(`/comment/post/${postId}`,{content})
 }
