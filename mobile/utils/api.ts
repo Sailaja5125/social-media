@@ -1,7 +1,7 @@
 import axios , { AxiosInstance } from "axios";
 import { useAuth } from "@clerk/clerk-expo";
 
-const API_BASE = process.env.EXPO_PUBLIC_API_URL
+const API_BASE = process.env.EXPO_PUBLIC_API_URL||"https://social-media-nine-kohl.vercel.app/api"
 
 export const createApiClient = (getToken:()=>Promise<string|null>):AxiosInstance =>{
     const api = axios.create({
@@ -30,7 +30,4 @@ export const userApi = {
    syncUser: (api:AxiosInstance) => api.post('/users/sync'),
    getCurrentUser :(api:AxiosInstance) => api.post('/users/me'),
    updateProfile: (api:AxiosInstance , data:any) => api.post('/users/profile',data),
-   createPost:(api:AxiosInstance , data:any)=> api.post('/auth' , data , {
-    headers:{"Content-Type":"multipart/form-data"}
-   })
 }

@@ -87,7 +87,11 @@ export const createPost = asyncHandler(async (req, res) => {
   let imageUpload = "";
   if (imageFile) {
     try {
-      const base64Image = `data:${imageFile.mimetype};base64,${imageFile.buffer.toString('base64')}`;
+      const base64Image = `data:${imageFile.mimetype};base64,${imageFile.buffer.toString(
+        "base64"
+      )}`;
+
+      
       const result = await cloudinary.uploader.upload(base64Image, {
         folder: "social_media_posts",
         resource_type: "image",
@@ -98,20 +102,21 @@ export const createPost = asyncHandler(async (req, res) => {
         ]
       });
       imageUpload = result.secure_url;
-    } catch (error) {
-      return res.status(500).json({
+    } catch (uploadError) {
+      console.log("cloudinary upload error",uploadError);
+      return res.status(400).json({
         error: "Image upload failed"
       });
     }
   }
 
-  const newPost = new Post({
+  const newPost = await Post.create({
     user: user._id,
     content,
     image: imageUpload
   });
 
-  await newPost.save();
+  
 
   
 

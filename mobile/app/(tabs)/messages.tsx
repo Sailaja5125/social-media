@@ -12,7 +12,9 @@ import {
   Modal,
 } from "react-native";
 import { SafeAreaView, useSafeAreaInsets } from "react-native-safe-area-context";
-
+// TODO implement real-time messaging with backend integration
+// TODO implemenet meet feature for video calls
+// TODO implement various message types (images, videos, files, etc.)
 const MessagesScreen = () => {
   const insets = useSafeAreaInsets();
   const [searchText, setSearchText] = useState("");
