@@ -30,7 +30,7 @@ return (
       <View className="flex-row p-4">
         <Image
           source={{ uri: post.user.profileImage }}
-          className="w-12 h-12 "
+          className="w-12 h-12 mr-3"
         />
 
         <View className="flex-1">
