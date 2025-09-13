@@ -40,7 +40,6 @@ const NotificationsScreen = () => {
         </TouchableOpacity>
       </View>
 
-      CONTENT
       <ScrollView
         className="flex-1"
         contentContainerStyle={{ paddingBottom: 100 + insets.bottom }}

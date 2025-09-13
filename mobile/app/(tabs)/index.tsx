@@ -7,7 +7,8 @@ import FontAwesome from '@expo/vector-icons/FontAwesome';
 import PostComposer from '@/components/PostComposer'
 import PostList from '@/components/PostList'
 const HomeScreen = () => {
-  useUserSync()
+  useUserSync();
+  // get current userId 
   return (
     <SafeAreaView className='flex-1 bg-white'>
       <View className="flex-row justify-between items-center px-4 py-3 border-b border-gray-100">
@@ -18,7 +19,7 @@ const HomeScreen = () => {
 
        <ScrollView>
         <PostComposer/>
-        <PostList/>
+        <PostList />
        </ScrollView>
     </SafeAreaView>
   )

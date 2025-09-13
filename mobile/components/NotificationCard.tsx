@@ -2,7 +2,7 @@ import { Notification } from "@/types";
 import { formatDate } from "@/utils/formatters";
 import { Feather } from "@expo/vector-icons";
 import { View, Text, Alert, Image, TouchableOpacity } from "react-native";
-
+import { AntDesign } from "@expo/vector-icons";
 interface NotificationCardProps {
   notification: Notification;
   onDelete: (notificationId: string) => void;
@@ -26,7 +26,7 @@ const NotificationCard = ({ notification, onDelete }: NotificationCardProps) => 
   const getNotificationIcon = () => {
     switch (notification.type) {
       case "like":
-        return <Feather name="heart" size={20} color="#E0245E" />;
+        return <AntDesign name="heart" size={18} color="#E0245E" className="relative bottom-4 left-4"/>;
       case "comment":
         return <Feather name="message-circle" size={20} color="#1DA1F2" />;
       case "follow":
@@ -52,7 +52,7 @@ const NotificationCard = ({ notification, onDelete }: NotificationCardProps) => 
       <View className="flex-row p-4">
         <View className="relative mr-3">
           <Image
-            source={{ uri: notification.from.profilePicture }}
+            source={{ uri: notification.from.profileImage }}
             className="size-12 rounded-full"
           />
 

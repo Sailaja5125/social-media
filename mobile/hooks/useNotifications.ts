@@ -14,7 +14,7 @@ export const useNotifications = () => {
   } = useQuery({
     queryKey: ["notification"],
     queryFn: () => api.get("/notification/"),
-    select: (res) => res.data.notifications,
+    select: (res) => res.data.notification,
   });
 
   const deleteNotificationMutation = useMutation({

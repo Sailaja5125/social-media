@@ -1,7 +1,7 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useApiClient, postApi } from "../utils/api";
 
-export const usePosts = ()=>{
+export const usePosts = (username?:string)=>{
     const api = useApiClient();
     const queryClient = useQueryClient();
 
@@ -11,8 +11,8 @@ export const usePosts = ()=>{
         error,
         refetch
     } = useQuery({
-        queryKey:["posts"],
-        queryFn:()=> postApi.getPosts(api),
+        queryKey:username?["userPosts" , username]:["posts"],
+        queryFn:()=> (username? postApi.getUserPost(api , username): postApi.getPosts(api)),
         select:(response)=> response.data.posts
     });
 

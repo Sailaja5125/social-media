@@ -11,7 +11,7 @@ import PostCard from './PostCard';
 
 const PostList = ({ username }: { username?: string }) => {
     const { currentUser } = useCurrentUser();
-    
+
     const [selectedPostId, setSelectedPostId] = useState<string | null>(null);
     
     const {posts , isLoading , error , toggleLike , deletePost ,checkIsLiked, refetch} = usePosts();
@@ -47,6 +47,8 @@ const PostList = ({ username }: { username?: string }) => {
     );
   }
 
+  
+
   return (
     <>
       {posts.map((post: Post) => (
@@ -60,6 +62,8 @@ const PostList = ({ username }: { username?: string }) => {
           isLiked={checkIsLiked(post.likes, currentUser)}
         />
       ))}
+
+      
 
       <CommentsModal selectedPost={selectedPost} onClose={() => setSelectedPostId(null)} />
     </>

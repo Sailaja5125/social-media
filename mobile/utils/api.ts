@@ -35,7 +35,7 @@ export const userApi = {
 export const postApi= {
     createPost :(api :AxiosInstance , data:{content:string ,image?:string})=> api.post("post/create"),
     getPosts : (api:AxiosInstance)=>api.get("post"),
-    getUserPost:(api:AxiosInstance , username:string)=>api.post(`/post/user/${username}`),
+    getUserPost:(api:AxiosInstance , username:string)=>api.get(`/post/user/${username}`),
     likPosts :(api:AxiosInstance , postId:string)=> api.post(`/post/${postId}/like`),
     deletePost:(api:AxiosInstance , postId:string)=> api.delete(`/post/${postId}`),
 }

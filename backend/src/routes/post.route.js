@@ -7,7 +7,7 @@ const router = Router();
 
 router.get("/",getPosts);
 router.get("/:postId" , getPost);
-router.post("/user/:username",getUserPosts);
+router.get("/user/:username",getUserPosts);
 
 // protected routes
 router.post("/create",protectRoute,upload.single("image") ,createPost);
