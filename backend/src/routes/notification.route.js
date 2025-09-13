@@ -4,6 +4,6 @@ import { getNotification , deleteNotification } from "../controllers/notificatio
 const router = Router();
 
 router.get('/',protectRoute, getNotification);
-router.get('/:notificationId',protectRoute, deleteNotification);
+router.delete('/:notificationId',protectRoute, deleteNotification);
 
 export default router;
