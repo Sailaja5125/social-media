@@ -15,7 +15,7 @@ export const getNotification = asyncHandler(async(req , res)=>{
 
     const notification = await Notification.find({
         to:user._id
-    }).sort({createdAt: -1}).populate("from" , "username firstName lastName profilePicture").populate("post" , "content image").populate("comment" , "content");
+    }).sort({createdAt: -1}).populate("from" , "username firstName lastName profileImage").populate("post" , "content image").populate("comment" , "content");
 
     res.status(200).json({notification});
 })

@@ -17,6 +17,7 @@ export const useComments = () => {
     onSuccess: () => {
       setCommentText("");
       queryClient.invalidateQueries({ queryKey: ["posts"] });
+      console.log("comment added successfully")
     },
     onError: (err) => {
       Alert.alert("Error", "Failed to post comment. Try again.");
